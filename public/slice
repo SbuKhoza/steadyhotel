@@ -1,0 +1,122 @@
+// store.js
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './features/userSlice';
+import bookingReducer from './features/bookingSlice';
+
+export const store = configureStore({
+  reducer: {
+    user: userReducer,
+    booking: bookingReducer,
+  },
+});
+
+
+// userSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+export const userSlice = createSlice({
+  name: 'user',
+  initialState: {
+    isLoggedIn: false,
+    userInfo: {},
+  },
+  reducers: {
+    login: (state, action) => {
+      state.isLoggedIn = true;
+      state.userInfo = action.payload;
+    },
+    logout: (state) => {
+      state.isLoggedIn = false;
+      state.userInfo = {};
+    },
+  },
+});
+
+export const { login, logout } = userSlice.actions;
+export default userSlice.reducer;
+
+
+// bookingSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+export const bookingSlice = createSlice({
+  name: 'booking',
+  initialState: {
+    bookings: [],
+  },
+  reducers: {
+    addBooking: (state, action) => {
+      state.bookings.push(action.payload);
+    },
+    removeBooking: (state, action) => {
+      state.bookings = state.bookings.filter(
+        booking => booking.id !== action.payload.id
+      );
+    },
+  },
+});
+
+export const { addBooking, removeBooking } = bookingSlice.actions;
+export default bookingSlice.reducer;
+
+
+
+
+
+
+
+
+// redux/slices/userSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+export const userSlice = createSlice({
+  name: 'user',
+  initialState: {
+    isLoggedIn: false,
+    userInfo: {},
+  },
+  reducers: {
+    login: (state, action) => {
+      state.isLoggedIn = true;
+      state.userInfo = action.payload;
+    },
+    logout: (state) => {
+      state.isLoggedIn = false;
+      state.userInfo = {};
+    },
+  },
+});
+
+export const { login, logout } = userSlice.actions;
+export default userSlice.reducer;
+
+
+
+
+
+
+
+
+
+// redux/slices/bookingSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+export const bookingSlice = createSlice({
+  name: 'booking',
+  initialState: {
+    bookings: [],
+  },
+  reducers: {
+    addBooking: (state, action) => {
+      state.bookings.push(action.payload);
+    },
+    removeBooking: (state, action) => {
+      state.bookings = state.bookings.filter(
+        booking => booking.id !== action.payload.id
+      );
+    },
+  },
+});
+
+export const { addBooking, removeBooking } = bookingSlice.actions;
+export default bookingSlice.reducer;
