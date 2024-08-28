@@ -7,7 +7,7 @@ import "@fontsource/righteous";
 function Nav() {
     return (
         <nav>
-            <h1 id='logo'>Steady</h1>
+            <h1 id='logo'>S</h1>
             <div className='menu'>
                 <ul>
                     <a href='/'>Home</a>
