@@ -1,0 +1,13 @@
+#bann {
+    width: 100%;
+    height: 700px;
+    
+}
+
+#bann img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+    transition: filter 0.5s ease;
+}

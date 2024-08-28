@@ -5,7 +5,7 @@ import './Banner.css';
   return (
     <div id='bann'>
         <img src='banner.jpg' alt='banner' />
-        <h1>Welcome <br/>to The <br/>Steady Hotel</h1>
+        <h1>Welcome <br/>to <br/>The Steady Hotel</h1>
       
     </div>
   )
