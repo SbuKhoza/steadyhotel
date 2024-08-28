@@ -1,0 +1,46 @@
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100
+    background-color: black;
+    border-left: none;
+    border-right: none;
+    margin: none;
+    /* padding: 5px 50px; */
+}
+
+#logo {
+color: #FFF;
+text-align: center;
+font-family: Righteous;
+font-size: 35px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;  
+}
+
+.menu a {
+    display:inline-flex;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 20px;
+    
+}
+
+.menu ul {
+    margin: 0;
+    padding: 0;
+    justify-content:center;
+    display: flex;
+    gap: 20px;
+    
+}

@@ -1,0 +1,14 @@
+
+.banner {
+    width: 100%;
+
+}
+
+.main-container {
+    display: flex;
+    width: 100;
+}
+
+.review-container {
+    display: flex;
+}

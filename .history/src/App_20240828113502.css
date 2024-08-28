@@ -1,0 +1,16 @@
+App {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #8982eb;
+
+}
+
+#nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* padding: 0.2em 0.5em; */
+}

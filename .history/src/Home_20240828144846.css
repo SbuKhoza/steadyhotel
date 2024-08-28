@@ -1,0 +1,15 @@
+
+.banner {
+    width: 100%;
+
+}
+
+.main-container {
+    display: flex;
+}
+
+.review-container {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
