@@ -13,7 +13,6 @@
     object-fit: cover;
     filter: brightness(0.8);
     transition: filter 0.5s ease;
-    
 }
 
 #bann h1 {
@@ -29,6 +28,6 @@
 
 #bann h1:hover {
     filter: brightness(1.2);
-    color:burlywood;
+    color:bisque
 
 }
