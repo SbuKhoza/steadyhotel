@@ -133,8 +133,7 @@ h3 {
 .reviewz {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 1em;
+    gap: ;
 }
 
 .review1 {

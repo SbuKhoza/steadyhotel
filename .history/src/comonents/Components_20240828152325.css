@@ -133,12 +133,10 @@ h3 {
 .reviewz {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 1em;
 }
 
 .review1 {
-    width: 25%;
+    width: 30%;
     height: 350px;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 2em;
@@ -146,7 +144,7 @@ h3 {
 }
 
 .review2 {
-    width: 25%;
+    width: 30%;
     height: 350px;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 2em;
@@ -154,7 +152,7 @@ h3 {
 }
 
 .review {
-    width: 25%;
+    width: 30%;
     height: 350px;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 2em;

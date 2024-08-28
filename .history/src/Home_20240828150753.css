@@ -1,4 +1,9 @@
 
+.home {
+    display: flex;
+    height: 100vh;
+    
+}
 
 .banner {
     width: 100%;
@@ -12,5 +17,4 @@
 .review-container {
     display: flex;
     justify-content: center;
-    margin-top: 10em;
 }
