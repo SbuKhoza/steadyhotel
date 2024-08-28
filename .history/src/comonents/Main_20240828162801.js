@@ -8,24 +8,27 @@ import React from 'react'
 
      <div id='maincont'>
          
-        <div className='tile1'>           
-            <img src='honeymoon.jpg' alt='honeymoon' />
+        <div className='tile1'>
+
             <h4>Honeymoon Suit</h4>
+            <img src='honeymoon.jpg' alt='honeymoon' />
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <button>Book Now</button>
 
         </div>
         <div className='tile2'>
+
+        <h4>Standard R</h4>
             <img src='standard.jpg' alt='rooms' />
-            <h4>Standard Rooming</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <button>Book Now</button>
 
         </div>
 
-        <div className='tile3'>      
+        <div className='tile3'>
+
+        <h4>Standard</h4>
             <img src='spar.jpg' alt='rooms' />
-            <h4>Spar</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <button>Book Now</button>
 
@@ -33,8 +36,9 @@ import React from 'react'
 
 
         <div className='tile4'>
+
+        <h4>Standard</h4>
             <img src='conference.jpg' alt='rooms' />
-            <h4>Conference Vanues</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <button>Book Now</button>
         </div>  

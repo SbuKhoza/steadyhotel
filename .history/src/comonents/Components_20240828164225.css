@@ -118,7 +118,8 @@ h3 {
 }
 
 .tile1 h4 {
-    
+    text-align: ;
+    position:fixed;
     top: 34%;
     z-index:2 ;
     color: aqua;

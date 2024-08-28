@@ -70,7 +70,6 @@ h3 {
 }
 
 .tile1 {
-
     width: 450px;
     height: 555px;   
 }
@@ -118,7 +117,8 @@ h3 {
 }
 
 .tile1 h4 {
-    
+    justify ;
+    position:fixed;
     top: 34%;
     z-index:2 ;
     color: aqua;

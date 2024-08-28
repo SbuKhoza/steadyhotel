@@ -8,7 +8,9 @@ import React from 'react'
 
      <div id='maincont'>
          
-        <div className='tile1'>           
+        <div className='tile1'>
+
+            
             <img src='honeymoon.jpg' alt='honeymoon' />
             <h4>Honeymoon Suit</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -16,6 +18,7 @@ import React from 'react'
 
         </div>
         <div className='tile2'>
+
             <img src='standard.jpg' alt='rooms' />
             <h4>Standard Rooming</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

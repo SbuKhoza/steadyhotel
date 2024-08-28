@@ -70,7 +70,6 @@ h3 {
 }
 
 .tile1 {
-
     width: 450px;
     height: 555px;   
 }
@@ -117,12 +116,7 @@ h3 {
     object-fit: cover;
 }
 
-.tile1 h4 {
-    
-    top: 34%;
-    z-index:2 ;
-    color: aqua;
-}
+.tile
 
 /* Review component */
 
