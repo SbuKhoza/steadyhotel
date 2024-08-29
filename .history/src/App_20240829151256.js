@@ -5,6 +5,7 @@ import Home from './Home';
 import Profile from './Profile';
 import Accommodation from './Accommodation';
 import { IconName } from "react-icons/sl";
+
 import About from './About';
 import Contact from './Contact';
 import Nav from './components/Nav';
