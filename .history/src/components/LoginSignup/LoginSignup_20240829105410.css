@@ -1,0 +1,24 @@
+
+.logsigncont {
+    display: flex;
+    width: 80%;
+}
+
+
+.logsign {
+    display: flex;
+    flex-direction: column;
+    width: 80;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: whitesmoke;
+}
+
+.headtext h2 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-family: Righteous;
+}

@@ -1,0 +1,7 @@
+.logsign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    background-color: whitesmoke;
+}

@@ -1,0 +1,66 @@
+
+.containersign{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.logsigncont {
+    display: flex;flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.logimg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.logimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+}
+
+.logsign {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    /* border-style:inset; */
+    width: 40%;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+    /* margin: auto; */
+    background-color: rgba(127, 136, 252, 0.459);
+    position: absolute;
+    top: 20%;
+    
+    
+}
+
+.headtext h2 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-family: Righteous;
+}
+
+.inputs input {
+    padding-left: 0.5em;
+    width: 320px;
+    height: 35px;
+    border-style:inset;
+    border-radius: 10px;
+    border-color: white;
+}
