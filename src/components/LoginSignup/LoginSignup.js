@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { signupUser, loginUser } from '../../redux/slices/userSlice';
 import './LoginSignup.css';
 
 function LoginSignup() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [action, setAction] = useState('Signup');
+  const dispatch = useDispatch();
+  const { error, loading } = useSelector(state => state.user);
+
+  const handleSubmit = () => {
+    if (action === 'Signup') {
+      dispatch(signupUser({ email, password }));
+    } else {
+      dispatch(loginUser({ email, password }));
+    }
+  };
 
   return (
     <div className='containersign'>
@@ -20,54 +34,44 @@ function LoginSignup() {
             <div className='underline'></div>
           </div>
 
-          {action === 'Signup' && (
-            <>
-              <div className='inputs'>
-                <div className='fname'> 
-                  <label htmlFor='name'>Name: </label><br/>
-                  <input type='text' placeholder='Sbuda Malloya' />
-                </div>
-              </div>
-              <div className='inputs'>
-                <div className='mail'> 
-                  <label htmlFor='email'>Email: </label><br/>
-                  <input type='email' placeholder='sbuda@mail.com' />
-                </div>
-              </div>
-            </>
-          )}
-
           <div className='inputs'>
-            <div className='uname'> 
-              <label htmlFor='username'>User Name: </label><br/>
-              <input type='text' placeholder='Malloya' />
+            <div className='mail'> 
+              <label htmlFor='email'>Email: </label><br/>
+              <input 
+                type='email' 
+                placeholder='sbuda@mail.com'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+              />
             </div>
           </div>
 
           <div className='inputs'>
             <div className='pass'> 
               <label htmlFor='password'>Password: </label><br/>
-              <input type='password' placeholder='p@**s***5' />
+              <input 
+                type='password' 
+                placeholder='p@**s***5'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
           </div>
 
-          {action === 'Signup' && (
-            <div className='inputs'>
-              <div className='confpass'> 
-                <label htmlFor='confirm-password'>Confirm Password: </label><br/>
-                <input type='password' placeholder='p@**s***5' />
-              </div>
-            </div>
-          )}
+          {error && <div className='error'>{error}</div>}
 
           <div className='lostpass'>
             Lost password? <span>Click here!</span>
           </div>
 
           <div className='submitcont'>
-            <div className='submit' onClick={() => setAction('Signup')}>Sign up</div>
-            <div className='submit' onClick={() => setAction('Login')}>Login</div>
+            <div className='submit' onClick={handleSubmit}>{action}</div>
+            <div className='submit' onClick={() => setAction(action === 'Signup' ? 'Login' : 'Signup')}>
+              {action === 'Signup' ? 'Switch to Login' : 'Switch to Signup'}
+            </div>
           </div>
+
+          {loading && <div>Loading...</div>}
         </div>
       </div>
     </div>
