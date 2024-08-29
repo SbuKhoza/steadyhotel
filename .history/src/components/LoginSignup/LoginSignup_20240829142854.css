@@ -42,7 +42,7 @@
     justify-content: center;
     align-items: center;
     /* margin: auto; */
-    background-color: rgba(0, 0, 0, 0.247);
+    background-color: rgba(127, 136, 252, 0.459);
     position: absolute;
     top: 20%;
     
@@ -59,7 +59,7 @@
 
 .inputs {
     /* display: flex; */
-    width: 80%;
+    width: 70%;
     justify-content: center;
     align-items: center;
 }
@@ -77,14 +77,12 @@
     margin-bottom: 20px;
     text-align: center;
     font-size: 1em;
-    font-weight: bold;
 }
 
 label {
-    color: whitesmoke;
+    color: white;
     font-size: 1em;
-    font-weight: bold;
-    
+    /* background-color: */
 }
 
 .submit {
@@ -94,9 +92,8 @@ label {
     width: 180px;
     height: 59px;
     color: white;
-    background-color: rgba(180, 185, 199, 0.685);
+    background-color: rgb(96, 96, 199);
     border-radius: 15px;
-    border: 1px solid whitesmoke;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
@@ -113,5 +110,4 @@ label {
 
 .lostpass {
     width: 100%;
-    color: whitesmoke;
 }

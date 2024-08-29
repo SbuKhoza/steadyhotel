@@ -96,7 +96,7 @@ label {
     color: white;
     background-color: rgba(180, 185, 199, 0.685);
     border-radius: 15px;
-    border: 1px solid whitesmoke;
+    border-color:;
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
