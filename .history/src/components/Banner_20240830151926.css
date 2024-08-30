@@ -71,14 +71,7 @@
     
 }
 
-@media screen and (max-width: 425px) {
-    #bann h1 {
-        position: absolute;
-        color: whitesmoke;
-        font-family: Righteous;
-        font-size:1.8rem;
-        top: 15%;
-        text-align: center;
-}
+
+
     
-}
+    

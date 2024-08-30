@@ -9,6 +9,7 @@ import About from './About';
 import Contact from './Contact';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+
 // import Booking from './components/Booking';
 import LoginSignup from './components/LoginSignup/LoginSignup';
 
@@ -21,7 +22,9 @@ function App() {
           
         </div>
 
-        
+        <div className='hamburger'>
+          <HamNav/>
+        </div>
         {/* <Booking/> */}
         <div>
           <Routes>
@@ -31,7 +34,7 @@ function App() {
             <Route path="Accommodation" element={<Accommodation/>}/>
             <Route path="About" element={<About/>}/>
             <Route path="Contact" element={<Contact/>}/>
-            
+            <Route path="HamNav" element={<HamNav/>}/>
             
           </Routes>
         </div>

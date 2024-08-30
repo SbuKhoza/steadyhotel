@@ -222,30 +222,17 @@ h3 {
     }
 
     .tile2 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+50vh;
     }
 
     .tile3 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .tile4 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .menu {

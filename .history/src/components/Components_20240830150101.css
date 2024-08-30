@@ -213,39 +213,23 @@ h3 {
     }
 
     .tile1 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .tile2 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .tile3 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .tile4 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .menu {
@@ -260,11 +244,17 @@ h3 {
         font-size: 25px;
     }
 
+    .tile1 img {
+        width: 100%;
+        height: 60vh;
+        object-fit: cover;
+    
+    }
+
     #maincont{
         width: 100%;
         gap: 5px;
-        flex-direction: column;
-        align-items: center;
+        
     }
 
 }

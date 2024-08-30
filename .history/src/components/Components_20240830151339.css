@@ -212,40 +212,22 @@ h3 {
         background-color: black;
     }
 
-    .tile1 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-    }
+    .tile1 
 
     .tile2 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+
+        width: 90%;
+        height: 50vh;
     }
 
     .tile3 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .tile4 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .menu {

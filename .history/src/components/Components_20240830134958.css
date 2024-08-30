@@ -206,65 +206,42 @@ h3 {
   
   @media screen and (max-width: 768px) {
 
-    #nav {
-        display: flex;
-        width: 100%;
-        background-color: black;
+    nav {
+        
+    }
+
+    #maincont {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+    
+    }
+  
+    .maincont {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
     }
 
     .tile1 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .tile2 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .tile3 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 90%;
+        height: 50vh;
     }
 
     .tile4 {
-        width: 70%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .menu {
-        display: none;
-    }
-
-    .profile {
-        display: none;
-    }
-
-    #logo {
-        font-size: 25px;
-    }
-
-    #maincont{
-        width: 100%;
-        gap: 5px;
-        flex-direction: column;
-        align-items: center;
+        width: 90%;
+        height: 50vh;
     }
 
 }
