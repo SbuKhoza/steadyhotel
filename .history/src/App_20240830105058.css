@@ -1,0 +1,41 @@
+App {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #8982eb;
+  align-items: center;
+
+}
+
+#nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* padding: 0.2em 0.5em; */
+}
+
+footer {
+  background-color: #000000;
+  color: white;
+  padding: 0.5em;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+
+@media screen and (max-width: 768px) {
+  app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+}
+
+#nav {
+
+}

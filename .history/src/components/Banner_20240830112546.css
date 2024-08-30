@@ -1,0 +1,58 @@
+#bann {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+}
+
+#bann img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+    transition: filter 0.5s ease;
+    
+}
+
+#bann h1 {
+    position: absolute;
+    color: whitesmoke;
+    font-family: Righteous;
+    font-size:3.5rem;
+    top: 30%;
+    text-align: center;
+    
+
+}
+
+#bann h1:hover {
+    filter: brightness(1.2);
+    color:burlywood;
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    #maincont {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    
+    }
+  
+    .maincont {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+  
+    }
+
+    .tile
+    
+    
+    
+  }

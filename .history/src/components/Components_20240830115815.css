@@ -1,0 +1,47 @@
+@media screen and (max-width: 768px) {
+    .maincont {
+        padding-top: 1em; /* Adjust padding for smaller screens if needed */
+    }
+
+    #maincont {
+        flex-direction: column;
+        align-items: center; /* Center-aligns the items */
+        width: 100%;
+        gap: 1em; /* Adjust the gap between the tiles */
+    }
+
+    .tile1, .tile2, .tile3, .tile4 {
+        width: 90%; /* Make each tile take most of the width */
+        height: auto; /* Adjust height to be flexible */
+        margin-bottom: 1em; /* Add space between stacked items */
+    }
+
+    .menu {
+        flex-direction: column; /* Stack menu items vertically */
+        gap: 1em; /* Add space between menu items */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .profile {
+        flex-direction: column; /* Stack profile items vertically */
+        gap: 0.5em; /* Add space between profile items */
+        align-items: center; /* Center-align profile items */
+    }
+
+    .rev {
+        flex-direction: column; /* Stack review components vertically */
+        gap: 1em; /* Add space between reviews */
+        align-items: center; /* Center-align reviews */
+    }
+
+    .reviewz {
+        flex-direction: column; /* Stack review tiles vertically */
+        align-items: center; /* Center-align review tiles */
+        gap: 1em; /* Add space between stacked items */
+    }
+
+    .review1, .review2, .review {
+        width: 90%; /* Make review tiles take most of the width */
+        margin-bottom: 1em; /* Add space between stacked review tiles */
+    }
+}
