@@ -30,7 +30,7 @@ function BookingForm() {
                 Room Type:  
             </label>
 
-            <select className="room-type">
+            <select Cname="room-type">
                     <option value="standard">Standard</option>
                     <option value="deluxe">Deluxe</option>
                     <option value="premium">Premium</option>

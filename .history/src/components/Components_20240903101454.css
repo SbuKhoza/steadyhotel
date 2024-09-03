@@ -206,7 +206,7 @@ h3 {
 
   .book {
     display: flex;
-    width: 40%;
+    width: 
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -215,11 +215,10 @@ h3 {
   #bookingform {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 30%;
   }
 
   #bookingform label {
-    width: 60%;
     display: block;
     margin-bottom: 5px;
     font-size: 16px;

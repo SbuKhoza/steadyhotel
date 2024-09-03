@@ -206,7 +206,6 @@ h3 {
 
   .book {
     display: flex;
-    width: 40%;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -215,11 +214,10 @@ h3 {
   #bookingform {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 30%;
   }
 
   #bookingform label {
-    width: 60%;
     display: block;
     margin-bottom: 5px;
     font-size: 16px;
@@ -229,7 +227,7 @@ h3 {
   #bookingform input[type="text"],
   #bookingform input[type="date"]
   {
-    width: 60%;
+    width: 90%;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -239,32 +237,12 @@ h3 {
   }
 
   #bookingform input[type="number"] {
-    width: 30%;
+    width: 90%;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
     border-style: outset;
     border-color:#f4f4f4;
-  }
-
-  .room-type {
-    width: 35%;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    border-style: outset;
-    border-color:#f4f4f4;
-  }
-
-  #bookingform input[type="submit"] {
-    width: 30%;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
   }
   @media screen and (max-width: 768px) {
 
