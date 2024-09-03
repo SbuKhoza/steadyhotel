@@ -225,16 +225,15 @@ h3 {
   }
   
   #bookingform input[type="text"],
-  #bookingform input[type="date"],
-  #bookingform input[type="number"] {
-    width: 90%;
+  #bookingform input[type="date"], {
+    width: 100%;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-    border-style: outset;
-    border-color:#f4f4f4;
 
   }
+
+  
   @media screen and (max-width: 768px) {
 
     #nav {

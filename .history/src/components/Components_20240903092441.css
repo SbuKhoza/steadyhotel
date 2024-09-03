@@ -208,33 +208,13 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    padding: 1em 2em;
+    color: white;
+    border-radius: 5px;
     cursor: pointer;
   }
-
-  #bookingform {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-  }
-
-  #bookingform label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 16px;
-    color: black;
-  }
   
-  #bookingform input[type="text"],
-  #bookingform input[type="date"],
-  #bookingform input[type="number"] {
-    width: 90%;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    border-style: outset;
-    border-color:#f4f4f4;
-
-  }
   @media screen and (max-width: 768px) {
 
     #nav {

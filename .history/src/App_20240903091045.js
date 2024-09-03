@@ -6,7 +6,7 @@ import Profile from './pages/Profile';
 import Accommodation from './pages/Accommodation';
 // import { IconName } from "react-icons/sl";
 import About from './pages/About';
-import Contact from './pages/Contact';
+import Contact from './/Contact';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 // import Booking from './components/Booking';

@@ -231,8 +231,7 @@ h3 {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-    border-style: outset;
-    border-color:#f4f4f4;
+    border-sty;
 
   }
   @media screen and (max-width: 768px) {

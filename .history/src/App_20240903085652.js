@@ -1,17 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Accommodation from './pages/Accommodation';
+import Home from './Home';
+import Profile from './Profile';
+import Accommodation from './Accommodation';
 // import { IconName } from "react-icons/sl";
-import About from './pages/About';
-import Contact from './pages/Contact';
+import About from './About';
+import Contact from './Contact';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 // import Booking from './components/Booking';
 import LoginSignup from './components/LoginSignup/LoginSignup';
-import BookingForm from './components/booking/BookingForm';
 
 function App() {
   return (
@@ -32,7 +31,7 @@ function App() {
             <Route path="Accommodation" element={<Accommodation/>}/>
             <Route path="About" element={<About/>}/>
             <Route path="Contact" element={<Contact/>}/>
-            <Route path="BookingForm" element={<BookingForm/>}/>
+            <Route path="B" element={<Contact/>}/>
             
             
           </Routes>
