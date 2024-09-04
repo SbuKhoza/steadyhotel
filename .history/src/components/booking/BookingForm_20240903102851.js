@@ -3,6 +3,8 @@ import React from 'react'
 function BookingForm() {
   return (
     <div className='book'>
+
+        <h2>Booking Form</h2>
         <form id='bookingform'>
            
             <label>
