@@ -29,7 +29,7 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
       alert('Booking successful!');
       handleCloseModal();
       
-      
+      // Pass booking data to Payment page via state
       navigate('/payment', { state: { bookingData: fullBookingData } }); 
     } catch (error) {
       console.error('Error adding booking: ', error);
