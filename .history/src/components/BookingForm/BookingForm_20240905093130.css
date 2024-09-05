@@ -54,8 +54,7 @@
   }
   
   #bookingform input[type="submit"] {
-    width: 20%;
-    align-self: center;
+    
     padding: 10px;
     background-color: #007bff;
     color: #fff;

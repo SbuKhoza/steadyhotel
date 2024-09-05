@@ -9,11 +9,11 @@ import Contact from './pages/Contact';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import BookingForm from './components/BookingForm/BookingForm'
-// import Payment from './pages/payment/PaymentPage'
+import Payment from './pages/payment/PaymentPage'
 import AdminDashboard from './Admin/AdminDashboard';
 import AdminLogin from './Admin/AdminLogin';
 import LoginSignup from './components/LoginSignup/LoginSignup';
-import PaymentPage from './pages/payment/PaymentPage';
+
 
 function App() {
   return (
@@ -32,8 +32,9 @@ function App() {
             <Route path="Accommodation" element={<Accommodation/>}/>
             <Route path="About" element={<About/>}/>
             <Route path="Contact" element={<Contact/>}/>
-            <Route path="BookingForm" element={<BookingForm/>}/> 
-            <Route path="payment" element={<PaymentPage />} />
+            <Route path="BookingForm" element={<BookingForm/>}/>
+            <Route path="Payment" element={<Payment/>} />
+            <Route path="/payment" element={<PaymentPage />} />
 
             
             <Route path="admin/login" element={<AdminLogin/>} />

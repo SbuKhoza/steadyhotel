@@ -9,7 +9,7 @@ import Contact from './pages/Contact';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import BookingForm from './components/BookingForm/BookingForm'
-// import Payment from './pages/payment/PaymentPage'
+import Payment from './pages/payment/PaymentPage'
 import AdminDashboard from './Admin/AdminDashboard';
 import AdminLogin from './Admin/AdminLogin';
 import LoginSignup from './components/LoginSignup/LoginSignup';

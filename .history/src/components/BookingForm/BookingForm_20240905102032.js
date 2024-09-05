@@ -28,9 +28,7 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
       await addDoc(collection(db, 'bookings'), fullBookingData);
       alert('Booking successful!');
       handleCloseModal();
-      
-      // Pass booking data to Payment page via state
-      navigate('/payment', { state: { bookingData: fullBookingData } }); 
+      navigate('/payment'); // Redirect to payment page
     } catch (error) {
       console.error('Error adding booking: ', error);
     }

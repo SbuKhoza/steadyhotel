@@ -258,7 +258,7 @@ h3 {
     border-color:#f4f4f4;
   }
 
-  /* #bookingform input[type="submit"] {
+  #bookingform input[type="submit"] {
     width: 30%;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -267,7 +267,7 @@ h3 {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-  } */
+  }
   @media screen and (max-width: 768px) {
 
     #nav {

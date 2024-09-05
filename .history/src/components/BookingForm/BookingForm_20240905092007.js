@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { addDoc, collection } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { db } from '../../firebase';
 import './BookingForm.css';
 
@@ -14,8 +13,6 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
     guests: '',
   });
 
-  const navigate = useNavigate(); // Initialize navigate
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setBookingData({ ...bookingData, [name]: value });
@@ -24,13 +21,11 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      
       const fullBookingData = { ...bookingData, roomType: selectedAccommodation };
       await addDoc(collection(db, 'bookings'), fullBookingData);
       alert('Booking successful!');
       handleCloseModal();
-      
-      // Pass booking data to Payment page via state
-      navigate('/payment', { state: { bookingData: fullBookingData } }); 
     } catch (error) {
       console.error('Error adding booking: ', error);
     }

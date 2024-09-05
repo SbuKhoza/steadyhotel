@@ -6,6 +6,7 @@ import { processPayment, resetPaymentState } from '../../redux/slices/paymentSli
 import './PaymentPage.css';
 
 function PaymentPage() {
+  
   const [paymentDetails, setPaymentDetails] = useState({
     cardNumber: '',
     expiryDate: '',
@@ -42,16 +43,17 @@ function PaymentPage() {
       <form onSubmit={handleSubmit}>
         <label>
           Card Number:
-          <input type="text" name="cardNumber" value={paymentDetails.cardNumber} onChange={handleChange} required />
-        </label>
+          
+        </label><br/>
+        <input type="text" name="cardNumber" value={paymentDetails.cardNumber} onChange={handleChange} required />
         <label>
           Expiry Date:
-          <input type="text" name="expiryDate" value={paymentDetails.expiryDate} onChange={handleChange} required />
+          
         </label>
         <label>
           CVV:
           <input type="text" name="cvv" value={paymentDetails.cvv} onChange={handleChange} required />
-        </label>
+        </label><br/>
         <input type="submit" value="Pay Now" disabled={paymentStatus === 'loading'} />
       </form>
       {paymentStatus === 'succeeded' && <p>Payment Successful!</p>}
