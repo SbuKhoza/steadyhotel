@@ -1,0 +1,112 @@
+/* BookingForm.css */
+
+.book {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .book h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  #bookingform {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  #bookingform label {
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #bookingform input[type="date"],
+  #bookingform input[type="number"] {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    margin-top: 5px;
+    outline: none;
+  }
+  
+  #bookingform input[type="date"]:focus,
+  #bookingform input[type="number"]:focus {
+    border-color: #007bff;
+  }
+  
+  .room-type-display {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    margin-left: 10px;
+  }
+  
+  #bookingform input[type="submit"] {
+    width: 50%;
+    
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #bookingform input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  button {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+  }
+  
+  button:hover {
+    background-color: #c82333;
+  }
+  
+ 
+  .ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+  }
+  
+  .ReactModal__Content {
+    max-width: 100%;
+    width: 90%;
+    padding: 30px;
+    position: relative;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: auto;
+  }
+  
+  @media (min-width: 768px) {
+    .ReactModal__Content {
+      width: 60%;
+      max-width: 600px;
+    }
+  }
+  
+  

@@ -16,14 +16,5 @@ App {
   /* padding: 0.2em 0.5em; */
 }
 
-footer {
-  background-color: #000000;
-  color: white;
-  padding: 0.5em;
-  text-align: center;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-}
 
 

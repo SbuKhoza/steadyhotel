@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { addUserToFirestore } from '../../services/firestoreService'; // Firestore services
 
 const auth = getAuth();
 
@@ -8,6 +9,10 @@ export const signupUser = createAsyncThunk(
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const { uid, email: userEmail } = userCredential.user;
+
+      // Add user to Firestore
+      await addUserToFirestore(uid, { email: userEmail });
       return userCredential.user;
     } catch (error) {
       return rejectWithValue(error.message);

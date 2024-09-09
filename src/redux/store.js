@@ -1,14 +1,18 @@
-// store.js
+// redux/store.js
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../redux/slices/userSlice';
-import bookingReducer from '../redux/slices/bookingSlice';
-import reviewReducer from '../redux/slices/reviewSlice';
+import userReducer from './slices/userSlice';
+import bookingReducer from './slices/bookingSlice';
+import reviewReducer from './slices/reviewSlice';
+import paymentReducer from './slices/paymentSlice';
+
+
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     booking: bookingReducer,
     reviews: reviewReducer,
+    payment: paymentReducer,
   },
 });
 
