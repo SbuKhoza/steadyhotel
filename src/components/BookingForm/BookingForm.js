@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { addDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'; // Access logged-in user info
+import { useSelector } from 'react-redux';
 import { db } from '../../firebase';
 import './BookingForm.css';
 
 Modal.setAppElement('#root');
 
 function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
-  // Access the current logged-in user from Redux
   const { userInfo } = useSelector((state) => state.user);
 
   const [bookingData, setBookingData] = useState({
@@ -18,7 +17,7 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
     guests: '',
   });
 
-  const [error, setError] = useState(null); // Manage error state
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -57,9 +56,9 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
       const fullBookingData = {
         ...bookingData,
         roomType: selectedAccommodation,
-        userId: userInfo.uid, // Store the user ID from Redux
-        email: userInfo.email, // Store the user email from Redux
-        status: 'pending', // Add initial booking status
+        userId: userInfo.uid,
+        email: userInfo.email,
+        status: 'pending',
         createdAt: new Date().toISOString(),
       };
 
@@ -77,7 +76,7 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
   return (
     <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal} contentLabel="Booking Form">
       <div className="book">
-        <h2>Booking Form</h2>
+        <h2>Booking Form for {selectedAccommodation}</h2>
         {error && <p className="error-message">{error}</p>} 
         <form id="bookingform" onSubmit={handleSubmit}>
           <div>
