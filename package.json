@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@fontsource/righteous": "^5.0.21",
     "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/jest-dom": "^5.17.0",

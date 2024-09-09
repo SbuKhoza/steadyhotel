@@ -48,6 +48,11 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
     event.preventDefault();
     if (!validateForm()) return;
 
+    if (!userInfo || !userInfo.uid) {
+      setError('User is not logged in.');
+      return;
+    }
+
     try {
       const fullBookingData = {
         ...bookingData,
@@ -58,10 +63,8 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
         createdAt: new Date().toISOString(),
       };
 
-      
       await addDoc(collection(db, 'bookings'), fullBookingData);
 
-      
       alert('Booking successful!');
       handleCloseModal();
       navigate('/payment', { state: { bookingData: fullBookingData } });
