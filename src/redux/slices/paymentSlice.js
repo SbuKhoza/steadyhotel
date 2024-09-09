@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Async action to process payment (e.g., integrate with a real payment gateway)
+
 export const processPayment = createAsyncThunk(
   'payment/processPayment',
   async (paymentDetails, { getState, rejectWithValue }) => {
-    const booking = getState().booking.currentBooking;  // Get current booking from state
+    const booking = getState().booking.currentBooking;  
 
     try {
-      // Simulate payment processing, passing along both payment and booking details
+      
       const response = await fakePaymentProcessing({ ...paymentDetails, booking });
       return response;
     } catch (error) {
@@ -19,7 +19,7 @@ export const processPayment = createAsyncThunk(
 const paymentSlice = createSlice({
   name: 'payment',
   initialState: {
-    paymentStatus: 'idle', // idle | loading | succeeded | failed
+    paymentStatus: 'idle', 
     paymentDetails: null,
     error: null,
   },
@@ -49,7 +49,7 @@ const paymentSlice = createSlice({
 export const { resetPaymentState } = paymentSlice.actions;
 export default paymentSlice.reducer;
 
-// Simulate fake payment processing function
+
 async function fakePaymentProcessing(details) {
   return new Promise((resolve) => {
     setTimeout(() => {
