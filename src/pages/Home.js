@@ -1,7 +1,7 @@
 import React from 'react'
 import Banner from '../components/Banner';
 import Main from '../components/Main';
-import Review from '../components/Review/Review';
+// import Review from '../components/Review/Review';
 import './Home.css';
 
 function Home() {
@@ -15,9 +15,9 @@ function Home() {
             <Main/>
         </div>
 
-        <div className='review-container'>
+        {/* <div className='review-container'>
             <Review/>
-        </div>
+        </div> */}
      </div> 
     )
 }

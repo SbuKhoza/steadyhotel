@@ -1,0 +1,32 @@
+.view-accommodation {
+    padding: 20px;
+    text-align: center;
+}
+
+.view-accommodation img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    margin-bottom: 20px;
+}
+
+.view-accommodation h2 {
+    margin-bottom: 10px;
+}
+
+.view-accommodation p {
+    margin-bottom: 10px;
+}
+
+.view-accommodation button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.view-accommodation button:hover {
+    background-color: #0056b3;
+}
