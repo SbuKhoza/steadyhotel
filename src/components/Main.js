@@ -44,8 +44,10 @@ function Main() {
             <img src={accommodation.image || '/default-image.jpg'} alt={accommodation.name} />
             <h4>{accommodation.name}</h4>
             <p>{accommodation.description}</p>
+            <div id='buttn'>
             <button id='booknow' onClick={() => handleOpenModal(accommodation)}>Book Now</button>
             <button id='view' onClick={() => handleOpenViewModal(accommodation)}>View</button>
+            </div>
           </div>
         ))}
       </div>
