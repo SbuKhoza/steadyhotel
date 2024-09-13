@@ -28,7 +28,7 @@ function Accommodation() {
                             <img src={accommodation.image || '/default-image.jpg'} alt={accommodation.name} />
                             <h2>{accommodation.name}</h2>
                             <p>{accommodation.description}</p>
-                            <p><strong>Price:</strong> ${accommodation.price}</p>
+                            <p><strong>Price:</strong> ZAR {accommodation.price}</p> {/* Updated to ZAR */}
                         </div>
                     ))
                 ) : (

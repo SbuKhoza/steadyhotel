@@ -14,7 +14,7 @@ function Main() {
     const fetchAccommodations = async () => {
       try {
         const accommodationsData = await getAccommodationsFromFirestore();
-        setAccommodations(accommodationsData.slice(0, 3)); 
+        setAccommodations(accommodationsData.slice(0, 3));
       } catch (error) {
         console.error('Error fetching accommodations: ', error);
       }
@@ -41,12 +41,13 @@ function Main() {
       <div id='maincont'>
         {accommodations.map((accommodation) => (
           <div key={accommodation.id} className='tile'>
+            {/* Use the correct image URL from Firestore */}
             <img src={accommodation.image || '/default-image.jpg'} alt={accommodation.name} />
             <h4>{accommodation.name}</h4>
             <p>{accommodation.description}</p>
             <div id='buttn'>
-            <button id='booknow' onClick={() => handleOpenModal(accommodation)}>Book Now</button>
-            <button id='view' onClick={() => handleOpenViewModal(accommodation)}>View</button>
+              <button id='booknow' onClick={() => handleOpenModal(accommodation)}>Book Now</button>
+              <button id='view' onClick={() => handleOpenViewModal(accommodation)}>View</button>
             </div>
           </div>
         ))}
@@ -62,7 +63,7 @@ function Main() {
         modalIsOpen={viewModalIsOpen}
         handleCloseModal={handleCloseViewModal}
         accommodation={selectedAccommodation}
-        handleOpenBooking={handleOpenModal} 
+        handleOpenBooking={handleOpenModal}
       />
     </div>
   );
