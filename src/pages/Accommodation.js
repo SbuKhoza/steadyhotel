@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getAccommodationsFromFirestore } from '../services/firestoreService'; // Import your Firestore service function
+import { db } from '../services/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 import './Accommodation.css';
 
 function Accommodation() {
@@ -7,12 +8,9 @@ function Accommodation() {
 
     useEffect(() => {
         const fetchAccommodations = async () => {
-            try {
-                const accommodationsData = await getAccommodationsFromFirestore();
-                setAccommodations(accommodationsData);
-            } catch (error) {
-                console.error("Error fetching accommodations: ", error);
-            }
+            const querySnapshot = await getDocs(collection(db, "accommodations"));
+            const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setAccommodations(data);
         };
 
         fetchAccommodations();
@@ -28,7 +26,7 @@ function Accommodation() {
                             <img src={accommodation.image || '/default-image.jpg'} alt={accommodation.name} />
                             <h2>{accommodation.name}</h2>
                             <p>{accommodation.description}</p>
-                            <p><strong>Price:</strong> ZAR {accommodation.price}</p> {/* Updated to ZAR */}
+                            <p><strong>Price:</strong> ZAR {accommodation.price}</p>
                         </div>
                     ))
                 ) : (

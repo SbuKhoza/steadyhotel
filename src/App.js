@@ -10,7 +10,7 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 import BookingForm from './components/BookingForm/BookingForm'
 // import Payment from './pages/payment/PaymentPage'
-import AdminDashboard from './Admin/AdminDashboard';
+// import AdminDashboard from './Admin/AdminDashboard';
 import AdminLogin from './Admin/AdminLogin';
 import LoginSignup from './components/LoginSignup/LoginSignup';
 import PaymentPage from './pages/payment/PaymentPage';
@@ -37,7 +37,7 @@ function App() {
 
             
             <Route path="admin/login" element={<AdminLogin/>} />
-            <Route path="admin/dashboard" element={<AdminDashboard/>} />
+            {/* <Route path="admin/dashboard" element={<AdminDashboard/>} /> */}
           </Routes>
         </div>
         <footer>

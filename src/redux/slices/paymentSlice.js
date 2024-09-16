@@ -1,15 +1,27 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { db } from '../../services/firebase';  // Adjust this path as per your folder structure
+import { doc, setDoc } from 'firebase/firestore';
 
-
+// Async thunk to process payment and store it in Firebase
 export const processPayment = createAsyncThunk(
   'payment/processPayment',
   async (paymentDetails, { getState, rejectWithValue }) => {
-    const booking = getState().booking.currentBooking;  
+    const booking = getState().booking.currentBooking;  // Get current booking from state
 
     try {
-      
-      const response = await fakePaymentProcessing({ ...paymentDetails, booking });
-      return response;
+      // Simulate payment processing
+      const paymentResponse = await fakePaymentProcessing({ ...paymentDetails, booking });
+
+      // If payment is successful, save payment details to Firestore
+      const paymentDocRef = doc(db, 'payments', booking.id);  // Use booking ID as document ID
+      await setDoc(paymentDocRef, {
+        ...paymentDetails,
+        bookingId: booking.id,
+        timestamp: new Date(),
+        status: 'completed',
+      });
+
+      return paymentResponse;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -49,7 +61,7 @@ const paymentSlice = createSlice({
 export const { resetPaymentState } = paymentSlice.actions;
 export default paymentSlice.reducer;
 
-
+// Mock function to simulate payment processing
 async function fakePaymentProcessing(details) {
   return new Promise((resolve) => {
     setTimeout(() => {

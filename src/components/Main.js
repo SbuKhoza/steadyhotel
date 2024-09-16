@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BookingForm from './BookingForm/BookingForm';
 import ViewAccommodation from '../components/ViewAccommodation';
-import { getAccommodationsFromFirestore } from '../services/firestoreService';
 import './Components.css';
+import { db } from '../services/firebase'; // Import Firebase
+import { collection, getDocs } from 'firebase/firestore';
 
 function Main() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [viewModalIsOpen, setViewModalIsOpen] = useState(false);
   const [selectedAccommodation, setSelectedAccommodation] = useState(null);
-  const [accommodations, setAccommodations] = useState([]);
+  const [accommodation, setAccommodation] = useState([]);
+  
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchAccommodations = async () => {
-      try {
-        const accommodationsData = await getAccommodationsFromFirestore();
-        setAccommodations(accommodationsData.slice(0, 3));
-      } catch (error) {
-        console.error('Error fetching accommodations: ', error);
-      }
+    const fetchAccommodation = async () => {
+      const querySnapshot = await getDocs(collection(db, "accommodations"));
+      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setAccommodation(data.slice(0, 3)); // Display only the first 3 accommodations
     };
-    fetchAccommodations();
+    
+    fetchAccommodation();
   }, []);
 
   const handleOpenModal = (accommodation) => {
@@ -35,23 +37,32 @@ function Main() {
   const handleCloseModal = () => setModalIsOpen(false);
   const handleCloseViewModal = () => setViewModalIsOpen(false);
 
+  const handleViewAll = () => {
+    navigate('/accommodation'); // Navigate to the accommodation page
+  };
+
   return (
     <div className='maincont'>
       <h3>Choose accommodation</h3>
       <div id='maincont'>
-        {accommodations.map((accommodation) => (
-          <div key={accommodation.id} className='tile'>
-            {/* Use the correct image URL from Firestore */}
-            <img src={accommodation.image || '/default-image.jpg'} alt={accommodation.name} />
-            <h4>{accommodation.name}</h4>
-            <p>{accommodation.description}</p>
-            <div id='buttn'>
-              <button id='booknow' onClick={() => handleOpenModal(accommodation)}>Book Now</button>
-              <button id='view' onClick={() => handleOpenViewModal(accommodation)}>View</button>
+        {accommodation.length > 0 ? (
+          accommodation.map((accommodationItem) => (
+            <div key={accommodationItem.id} className='tile'>
+              <img src={accommodationItem.image || '/default-image.jpg'} alt={accommodationItem.name} />
+              <h4>{accommodationItem.name}</h4>
+              <p>{accommodationItem.description}</p>
+              <div id='buttn'>
+                <button id='booknow' onClick={() => handleOpenModal(accommodationItem)}>Book Now</button>
+                <button id='view' onClick={() => handleOpenViewModal(accommodationItem)}>View</button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>No accommodations available.</p>
+        )}
       </div>
+
+      <button id='view-all' onClick={handleViewAll}>View All</button>
 
       <BookingForm
         modalIsOpen={modalIsOpen}

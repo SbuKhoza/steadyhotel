@@ -1,25 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { addUserToFirestore } from '../../services/firestoreService'; // Firestore services
+import { auth } from '../../services/firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
-const auth = getAuth();
-
+// Thunk action for user signup
 export const signupUser = createAsyncThunk(
   'user/signupUser',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const { uid, email: userEmail } = userCredential.user;
-
-      // Add user to Firestore
-      await addUserToFirestore(uid, { email: userEmail });
       return userCredential.user;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue('Signup failed');
     }
   }
 );
 
+// Thunk action for user login
 export const loginUser = createAsyncThunk(
   'user/loginUser',
   async ({ email, password }, { rejectWithValue }) => {
@@ -27,7 +23,19 @@ export const loginUser = createAsyncThunk(
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       return userCredential.user;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue('Login failed');
+    }
+  }
+);
+
+// Thunk action for user logout
+export const logoutUser = createAsyncThunk(
+  'user/logoutUser',
+  async (_, { rejectWithValue }) => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      return rejectWithValue('Logout failed');
     }
   }
 );
@@ -36,21 +44,14 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     isLoggedIn: false,
-    userInfo: {},
-    error: null,
+    userInfo: null,
     loading: false,
-  },
-  reducers: {
-    logout: (state) => {
-      state.isLoggedIn = false;
-      state.userInfo = {};
-    },
+    error: null,
   },
   extraReducers: (builder) => {
     builder
       .addCase(signupUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.isLoggedIn = true;
@@ -63,7 +64,6 @@ export const userSlice = createSlice({
       })
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoggedIn = true;
@@ -73,9 +73,12 @@ export const userSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.isLoggedIn = false;
+        state.userInfo = null;
       });
   },
 });
 
-export const { logout } = userSlice.actions;
 export default userSlice.reducer;

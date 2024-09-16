@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signupUser, loginUser } from '../../redux/slices/userSlice';
 import './LoginSignup.css';
 
 function LoginSignup() {
@@ -12,9 +11,11 @@ function LoginSignup() {
 
   const handleSubmit = () => {
     if (action === 'Signup') {
-      dispatch(signupUser({ email, password }));
+      // Placeholder for signup logic
+      console.log('Signup:', { email, password });
     } else {
-      dispatch(loginUser({ email, password }));
+      // Placeholder for login logic
+      console.log('Login:', { email, password });
     }
   };
 

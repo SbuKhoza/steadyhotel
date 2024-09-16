@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { addDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { db } from '../../firebase';
 import './BookingForm.css';
 
 Modal.setAppElement('#root');
@@ -53,6 +51,7 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
     }
 
     try {
+      // Simulate a successful booking submission
       const fullBookingData = {
         ...bookingData,
         roomType: selectedAccommodation,
@@ -61,8 +60,6 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
         status: 'pending',
         createdAt: new Date().toISOString(),
       };
-
-      await addDoc(collection(db, 'bookings'), fullBookingData);
 
       alert('Booking successful!');
       handleCloseModal();
