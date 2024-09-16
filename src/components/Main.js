@@ -1,3 +1,5 @@
+// src/components/Main.js
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BookingForm from './BookingForm/BookingForm';
@@ -5,6 +7,7 @@ import ViewAccommodation from '../components/ViewAccommodation';
 import './Components.css';
 import { db } from '../services/firebase'; // Import Firebase
 import { collection, getDocs } from 'firebase/firestore';
+import { getImageUrl } from '../services/firebase'; // Import the getImageUrl function
 
 function Main() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -17,7 +20,13 @@ function Main() {
   useEffect(() => {
     const fetchAccommodation = async () => {
       const querySnapshot = await getDocs(collection(db, "accommodations"));
-      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const data = await Promise.all(querySnapshot.docs.map(async doc => {
+        const docData = { id: doc.id, ...doc.data() };
+        if (docData.image) {
+          docData.imageUrl = await getImageUrl(docData.image);
+        }
+        return docData;
+      }));
       setAccommodation(data.slice(0, 3)); // Display only the first 3 accommodations
     };
     
@@ -48,7 +57,7 @@ function Main() {
         {accommodation.length > 0 ? (
           accommodation.map((accommodationItem) => (
             <div key={accommodationItem.id} className='tile'>
-              <img src={accommodationItem.image || '/default-image.jpg'} alt={accommodationItem.name} />
+              <img src={accommodationItem.imageUrl || '/default-image.jpg'} alt={accommodationItem.name} />
               <h4>{accommodationItem.name}</h4>
               <p>{accommodationItem.description}</p>
               <div id='buttn'>

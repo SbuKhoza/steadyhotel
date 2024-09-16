@@ -1,6 +1,9 @@
+// src/components/Accommodation.js
+
 import React, { useState, useEffect } from 'react';
 import { db } from '../services/firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import { getImageUrl } from '../services/firebase'; // Import the getImageUrl function
 import './Accommodation.css';
 
 function Accommodation() {
@@ -9,7 +12,13 @@ function Accommodation() {
     useEffect(() => {
         const fetchAccommodations = async () => {
             const querySnapshot = await getDocs(collection(db, "accommodations"));
-            const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            const data = await Promise.all(querySnapshot.docs.map(async doc => {
+              const docData = { id: doc.id, ...doc.data() };
+              if (docData.image) {
+                docData.imageUrl = await getImageUrl(docData.image);
+              }
+              return docData;
+            }));
             setAccommodations(data);
         };
 
@@ -23,7 +32,7 @@ function Accommodation() {
                 {accommodations.length > 0 ? (
                     accommodations.map(accommodation => (
                         <div className="accommodation-card" key={accommodation.id}>
-                            <img src={accommodation.image || '/default-image.jpg'} alt={accommodation.name} />
+                            <img src={accommodation.imageUrl || '/default-image.jpg'} alt={accommodation.name} />
                             <h2>{accommodation.name}</h2>
                             <p>{accommodation.description}</p>
                             <p><strong>Price:</strong> ZAR {accommodation.price}</p>

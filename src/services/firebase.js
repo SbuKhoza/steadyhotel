@@ -1,9 +1,11 @@
+// src/services/firebase.js
+
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { getStorage } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
-// Firebase configuration for the user app
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCm2BWy4yC5E9KVwvY7YF374tgEJww2gj0",
   authDomain: "steady-4edfa.firebaseapp.com",
@@ -17,9 +19,22 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Export instances for Firestore, Auth, and Storage
+// Initialize Firebase services
 const db = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
 
+// Function to get download URL for an image from Firebase Storage
+export const getImageUrl = async (imagePath) => {
+  try {
+    const imageRef = ref(storage, imagePath);
+    const url = await getDownloadURL(imageRef);
+    return url;
+  } catch (error) {
+    console.error("Error fetching image URL:", error);
+    return '/default-image.jpg'; // Return a default image URL on error
+  }
+};
+
+// Export instances
 export { db, auth, storage };
