@@ -1,3 +1,6 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 /* Navigation styling */
 nav {
     display: flex;
@@ -75,6 +78,7 @@ h3 {
 #maincont {
     display: flex;
     width: 90%;
+    margin-bottom: 10rem;
     justify-content: center;
     gap: 10px;
 }

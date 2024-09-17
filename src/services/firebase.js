@@ -27,7 +27,7 @@ const storage = getStorage(app);
 // Function to get download URL for an image from Firebase Storage
 export const getImageUrl = async (imagePath) => {
   try {
-    const imageRef = ref(storage, imagePath);
+    const imageRef = ref(storage, `accommodations/${imagePath}`);
     const url = await getDownloadURL(imageRef);
     return url;
   } catch (error) {

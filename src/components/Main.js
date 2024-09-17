@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import BookingForm from './BookingForm/BookingForm';
 import ViewAccommodation from '../components/ViewAccommodation';
 import './Components.css';
-import { db } from '../services/firebase'; // Import Firebase
+import { db, getImageUrl } from '../services/firebase'; // Import Firebase services
 import { collection, getDocs } from 'firebase/firestore';
-import { getImageUrl } from '../services/firebase'; // Import the getImageUrl function
 
 function Main() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
