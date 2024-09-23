@@ -1,9 +1,7 @@
-// src/services/firebase.js
-
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -34,6 +32,38 @@ export const getImageUrl = async (imagePath) => {
     console.error("Error fetching image URL:", error);
     return '/default-image.jpg'; // Return a default image URL on error
   }
+};
+
+// Function to upload profile picture to Firebase Storage and get the download URL
+export const uploadProfilePicture = async (file, userId) => {
+  if (!file) throw new Error("No file provided for upload");
+
+  const storageRef = ref(storage, `profilePictures/${userId}/${file.name}`);
+  const uploadTask = uploadBytesResumable(storageRef, file);
+
+  return new Promise((resolve, reject) => {
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        // Optional: Monitor progress
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+      },
+      (error) => {
+        console.error("Error during image upload:", error);
+        reject(error);
+      },
+      async () => {
+        try {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          resolve(downloadURL);
+        } catch (error) {
+          console.error("Error getting download URL:", error);
+          reject(error);
+        }
+      }
+    );
+  });
 };
 
 // Export instances

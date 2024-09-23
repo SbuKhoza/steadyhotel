@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './BookingForm.css';
-
-Modal.setAppElement('#root');
 
 function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
   const { userInfo } = useSelector((state) => state.user);
@@ -51,7 +48,6 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
     }
 
     try {
-      // Simulate a successful booking submission
       const fullBookingData = {
         ...bookingData,
         roomType: selectedAccommodation,
@@ -71,51 +67,58 @@ function BookingForm({ modalIsOpen, handleCloseModal, selectedAccommodation }) {
   };
 
   return (
-    <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal} contentLabel="Booking Form">
-      <div className="book">
-        <h2>Booking Form for {selectedAccommodation}</h2>
-        {error && <p className="error-message">{error}</p>} 
+    <Dialog open={modalIsOpen} onClose={handleCloseModal} fullWidth>
+      <DialogTitle>Booking Form for {selectedAccommodation}</DialogTitle>
+      <DialogContent>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <form id="bookingform" onSubmit={handleSubmit}>
-          <div>
-            <label>Room Type:</label>
-            <span className="room-type-display">{selectedAccommodation}</span>
-          </div>
-          <label>
-            Check-In:
-            <input
-              type="date"
-              name="checkIn"
-              value={bookingData.checkIn}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Check-Out:
-            <input
-              type="date"
-              name="checkOut"
-              value={bookingData.checkOut}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Guests:
-            <input
-              type="number"
-              name="guests"
-              value={bookingData.guests}
-              onChange={handleChange}
-              required
-              min="1" 
-            />
-          </label>
-          <input type="submit" value="Submit" />
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Check-In"
+                type="date"
+                name="checkIn"
+                value={bookingData.checkIn}
+                onChange={handleChange}
+                InputLabelProps={{ shrink: true }}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Check-Out"
+                type="date"
+                name="checkOut"
+                value={bookingData.checkOut}
+                onChange={handleChange}
+                InputLabelProps={{ shrink: true }}
+                required
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Guests"
+                type="number"
+                name="guests"
+                value={bookingData.guests}
+                onChange={handleChange}
+                required
+                inputProps={{ min: 1 }}
+              />
+            </Grid>
+          </Grid>
         </form>
-        <button onClick={handleCloseModal}>Close</button>
-      </div>
-    </Modal>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleCloseModal}>Close</Button>
+        <Button type="submit" form="bookingform" variant="contained" color="primary">
+          Submit
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 

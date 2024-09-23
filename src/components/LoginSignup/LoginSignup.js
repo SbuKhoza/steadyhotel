@@ -1,90 +1,117 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { signupUser, loginUser } from '../../redux/slices/userSlice';
-import './LoginSignup.css';
+import { Box, Button, TextField, Typography, Grid, Paper, CircularProgress } from '@mui/material';
 
 function LoginSignup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState(''); // New state for display name
   const [action, setAction] = useState('Signup');
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
   const { error, loading, isLoggedIn } = useSelector(state => state.user);
 
-  // Handle submission for login or signup
   const handleSubmit = () => {
     if (action === 'Signup') {
-      dispatch(signupUser({ email, password }));
+      dispatch(signupUser({ email, password, displayName })); // Include display name in signup
     } else {
       dispatch(loginUser({ email, password }));
     }
   };
 
-  // If the user is logged in, navigate to the homepage
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/'); // Navigate to homepage
+      navigate('/');
     }
   }, [isLoggedIn, navigate]);
 
   return (
-    <div className='containersign'>
-      <div className='logsigncont'>
-        <div className='logimg'>
-          <img src='login1.jpg' alt='login' />
-        </div>
+    <Box
+      sx={{
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundImage: 'url(/path-to-your-background-image.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <Grid container justifyContent="center">
+        <Grid item xs={12} sm={8} md={4}>
+          <Paper elevation={6} sx={{ padding: 4, backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+            <Typography variant="h4" align="center" gutterBottom>
+              {action === 'Signup' ? 'Sign Up' : 'Login'}
+            </Typography>
 
-        <div className='logsign'>
-          <div className='signheader'>
-            <div className='headtext'>
-              <h2>{action === 'Signup' ? 'Sign Up' : 'Login'}</h2>
-            </div>
-            <div className='text'></div>
-            <div className='underline'></div>
-          </div>
-
-          <div className='inputs'>
-            <div className='mail'> 
-              <label htmlFor='email'>Email: </label><br/>
-              <input 
-                type='email' 
-                placeholder='sbuda@mail.com'
+            <Box component="form" noValidate autoComplete="off" sx={{ mt: 2 }}>
+              {action === 'Signup' && (
+                <TextField
+                  label="Display Name"
+                  variant="outlined"
+                  fullWidth
+                  margin="normal"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                />
+              )}
+              <TextField
+                label="Email"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} 
+                onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
-          </div>
-
-          <div className='inputs'>
-            <div className='pass'> 
-              <label htmlFor='password'>Password: </label><br/>
-              <input 
-                type='password' 
-                placeholder='p@**s***5'
+              <TextField
+                label="Password"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </div>
-          </div>
+            </Box>
 
-          {error && <div className='error'>{error}</div>}
+            {error && (
+              <Typography color="error" align="center" sx={{ mt: 2 }}>
+                {error}
+              </Typography>
+            )}
 
-          <div className='lostpass'>
-            Lost password? <span>Click here!</span>
-          </div>
+            <Box sx={{ mt: 2 }}>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={handleSubmit}
+              >
+                {action}
+              </Button>
+              <Button
+                fullWidth
+                variant="text"
+                color="secondary"
+                onClick={() => setAction(action === 'Signup' ? 'Login' : 'Signup')}
+                sx={{ mt: 2 }}
+              >
+                {action === 'Signup' ? 'Switch to Login' : 'Switch to Signup'}
+              </Button>
+            </Box>
 
-          <div className='submitcont'>
-            <div className='submit' onClick={handleSubmit}>{action}</div>
-            <div className='submit' onClick={() => setAction(action === 'Signup' ? 'Login' : 'Signup')}>
-              {action === 'Signup' ? 'Switch to Login' : 'Switch to Signup'}
-            </div>
-          </div>
-
-          {loading && <div>Loading...</div>}
-        </div>
-      </div>
-    </div>
+            {loading && (
+              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                <CircularProgress />
+              </Box>
+            )}
+          </Paper>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
