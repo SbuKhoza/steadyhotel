@@ -1,68 +1,70 @@
+// PaymentPage.js
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { processPayment, resetPaymentState } from '../../redux/slices/paymentSlice';
 
+const stripePromise = loadStripe('your-publishable-key'); // Replace with your Stripe public key for testing
 
-import './PaymentPage.css';
-
-function PaymentPage() {
-  
-  const [paymentDetails, setPaymentDetails] = useState({
-    cardNumber: '',
-    expiryDate: '',
-    cvv: ''
-  });
-
+function PaymentForm() {
+  const [isProcessing, setIsProcessing] = useState(false);
+  const stripe = useStripe();
+  const elements = useElements();
   const dispatch = useDispatch();
   const paymentStatus = useSelector((state) => state.payment.paymentStatus);
   const selectedAccommodation = useSelector((state) => state.booking.currentBooking);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setPaymentDetails({ ...paymentDetails, [name]: value });
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const fullPaymentDetails = { ...paymentDetails, accommodation: selectedAccommodation };
-    dispatch(processPayment(fullPaymentDetails));
+
+    if (!stripe || !elements) return;
+
+    setIsProcessing(true);
+
+    const cardElement = elements.getElement(CardElement);
+
+    // Create Payment Method
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+    });
+
+    if (error) {
+      console.error(error);
+      setIsProcessing(false);
+      return;
+    }
+
+    // Send payment method to the server
+    const paymentDetails = { paymentMethodId: paymentMethod.id, accommodation: selectedAccommodation };
+    dispatch(processPayment(paymentDetails));
+
+    setIsProcessing(false);
   };
 
   const handleReset = () => {
     dispatch(resetPaymentState());
-    setPaymentDetails({
-      cardNumber: '',
-      expiryDate: '',
-      cvv: ''
-    });
+    setIsProcessing(false);
   };
 
   return (
-    <div className='payment-section'>
-      <h2>Checkout</h2>
-      <form onSubmit={handleSubmit}><br/>
-        <label>
-          Card Number:
-          
-        </label><br/>
-        <input type="text" name="cardNumber" value={paymentDetails.cardNumber} onChange={handleChange} required />
-        <label><br/>
-          Expiry Date:
-          
-        </label><br/>
-        <input type="text" name="expiryDate" value={paymentDetails.expiryDate} onChange={handleChange} required />
-        <label><br/>
-          CVV:
-          
-        </label><br/>
-        <input type="text" name="cvv" value={paymentDetails.cvv} onChange={handleChange} required /><br/>
-        <input type="submit" value="Pay Now" disabled={paymentStatus === 'loading'} />
-      </form>
+    <form onSubmit={handleSubmit}>
+      <CardElement />
+      <button type="submit" disabled={!stripe || isProcessing || paymentStatus === 'loading'}>
+        {isProcessing ? 'Processing...' : 'Pay Now'}
+      </button>
       {paymentStatus === 'succeeded' && <p>Payment Successful!</p>}
       {paymentStatus === 'failed' && <p>Payment Failed. Please try again.</p>}
       {paymentStatus !== 'idle' && <button onClick={handleReset}>Reset</button>}
-    </div>
+    </form>
   );
 }
 
-export default PaymentPage;
+export default function PaymentPage() {
+  return (
+    <Elements stripe={stripePromise}>
+      <PaymentForm />
+    </Elements>
+  );
+}

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { signupUser, loginUser } from '../../redux/slices/userSlice';
 import './LoginSignup.css';
 
 function LoginSignup() {
@@ -7,17 +9,24 @@ function LoginSignup() {
   const [password, setPassword] = useState('');
   const [action, setAction] = useState('Signup');
   const dispatch = useDispatch();
-  const { error, loading } = useSelector(state => state.user);
+  const navigate = useNavigate(); // Initialize navigate
+  const { error, loading, isLoggedIn } = useSelector(state => state.user);
 
+  // Handle submission for login or signup
   const handleSubmit = () => {
     if (action === 'Signup') {
-      // Placeholder for signup logic
-      console.log('Signup:', { email, password });
+      dispatch(signupUser({ email, password }));
     } else {
-      // Placeholder for login logic
-      console.log('Login:', { email, password });
+      dispatch(loginUser({ email, password }));
     }
   };
+
+  // If the user is logged in, navigate to the homepage
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/'); // Navigate to homepage
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className='containersign'>
