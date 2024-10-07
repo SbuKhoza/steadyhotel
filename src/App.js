@@ -3,14 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import Accommodation from './pages/Accommodation';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import BookingForm from './components/BookingForm/BookingForm'
-// import Payment from './pages/payment/PaymentPage'
-// import AdminDashboard from './Admin/AdminDashboard';
 import AdminLogin from './Admin/AdminLogin';
 import LoginSignup from './components/LoginSignup/LoginSignup';
 import PaymentPage from './pages/payment/PaymentPage';
@@ -29,7 +26,6 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="LoginSignup" element={<LoginSignup/>} />
             <Route path="Profile" element={<Profile/>}/>
-            <Route path="Accommodation" element={<Accommodation/>}/>
             <Route path="About" element={<About/>}/>
             <Route path="Contact" element={<Contact/>}/>
             <Route path="BookingForm" element={<BookingForm/>}/> 
