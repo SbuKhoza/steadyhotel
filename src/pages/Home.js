@@ -1,25 +1,17 @@
 import React from 'react'
-import Banner from '../components/Banner';
-import Main from '../components/Main';
-// import Review from '../components/Review/Review';
-import './Home.css';
-
+import NavBar from '../components/NavBar'
+import Header from '../components/Header'
+import Headertext from '../components/Headtext'
+import Search from '../components/Search'
 function Home() {
-    return (
-     <div className='home'>
-        <div className='banner'>
-           <Banner/>
-        </div>
-
-        <div className='main-container'>
-            <Main/>
-        </div>
-
-        {/* <div className='review-container'>
-            <Review/>
-        </div> */}
-     </div> 
-    )
+  return (
+    <div>
+        <NavBar/>
+        <Header/>
+        <Headertext/>
+        <Search/>
+    </div>
+  )
 }
 
 export default Home

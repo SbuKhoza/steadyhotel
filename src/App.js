@@ -6,7 +6,7 @@ import Profile from './pages/Profile';
 import Accommodation from './pages/Accommodation';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Nav from './components/Nav';
+import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import BookingForm from './components/BookingForm/BookingForm'
 // import Payment from './pages/payment/PaymentPage'
@@ -20,7 +20,7 @@ function App() {
     <Router>
       <div className="App">
         <div id='nav'>
-          <Nav/>
+          <NavBar/>
         </div>
 
         <div>
