@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import CircularProgress from '@mui/material/CircularProgress'; // Import CircularProgress for loader
 import '@fontsource/righteous';
 import { styled } from '@mui/material/styles';
 
@@ -32,7 +33,7 @@ const FullscreenMenu = styled(Menu)(({ theme }) => ({
 function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  
+  const [loading, setLoading] = useState(false); // State for loading
   const navigate = useNavigate(); 
 
   const handleMenuClick = () => {
@@ -45,6 +46,18 @@ function NavBar() {
 
   const handleLogin = () => {
     navigate('/LoginSignup'); 
+  };
+
+  const handleProfileClick = () => {
+    setLoading(true); // Set loading to true
+    setTimeout(() => {
+      setLoading(false); // Simulate loading time
+      navigate('/profile'); // Navigate to profile page
+    }, 2000); // Adjust timeout as necessary
+  };
+
+  const handleHomeClick = () => {
+    navigate('/'); // Navigate to the home page
   };
 
   return (
@@ -108,21 +121,44 @@ function NavBar() {
         >
           <IconButton
             onClick={handleMenuClose}
-            sx={{ position: 'absolute', top: '10px', right: '10px' }}
+            sx={{ 
+              position: 'absolute', 
+              top: '10px', 
+              right: '10px',
+              padding: '12px',  // Added padding for more space
+              zIndex: 10, // Ensure the button is above other elements
+            }}
           >
             <CloseIcon />
           </IconButton>
-          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center',
+              width: '80%', // Increased width of the menu box
+              height: '50%', // Increased height of the menu box
+              justifyContent: 'center',
+              bgcolor: 'background.paper', // Optional: Add background color for better visibility
+              borderRadius: 2, // Optional: Add rounded corners
+              boxShadow: 2, // Optional: Add shadow for depth
+            }}
+          >
+            <MenuItem onClick={handleHomeClick} sx={{ fontSize: '2rem' }}> {/* Home menu item */}
+              Home
+            </MenuItem>
             <MenuItem onClick={handleMenuClose} sx={{ fontSize: '2rem' }}>
               About Us
             </MenuItem>
             <MenuItem onClick={handleMenuClose} sx={{ fontSize: '2rem' }}>
               Contact Us
             </MenuItem>
-            <MenuItem onClick={handleMenuClose} sx={{ fontSize: '2rem' }}>
+            <MenuItem onClick={handleProfileClick} sx={{ fontSize: '2rem' }}>
               Profile
             </MenuItem>
           </Box>
+          {loading && <CircularProgress sx={{ marginTop: 2 }} />} {/* Loader display */}
         </FullscreenMenu>
       </AppBar>
     </>
