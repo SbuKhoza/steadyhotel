@@ -16,7 +16,7 @@ function Header() {
       sx={{ 
         width: '100%', 
         height: '100vh',  
-        position: 'relative', 
+        position: 'relative',
         overflow: 'hidden' 
       }}
     >
