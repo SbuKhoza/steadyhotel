@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db, getImageUrl } from '../services/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 import Slider from 'react-slick';
 import {
   Card,
@@ -15,7 +15,10 @@ import {
   Grid,
   TextField,
   Box,
+  CircularProgress,
+  Alert,
 } from '@mui/material';
+import { useSelector } from 'react-redux'; // Use to get current user info
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -25,9 +28,16 @@ function Accommodation() {
   const [open, setOpen] = useState(false);
   const [selectedAccommodation, setSelectedAccommodation] = useState(null);
   const [bookingOpen, setBookingOpen] = useState(false);
+  const [bookingError, setBookingError] = useState('');
+  const [bookingLoading, setBookingLoading] = useState(false);
+
+  // Get current user from Redux store
+  const user = useSelector((state) => state.user.userInfo);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   useEffect(() => {
     const fetchAccommodations = async () => {
+      setLoading(true);
       try {
         const querySnapshot = await getDocs(collection(db, 'accommodations'));
         const accommodationsData = [];
@@ -40,7 +50,6 @@ function Accommodation() {
               : accommodation.frontPicture;
             accommodationsData.push({ ...accommodation, imageUrl });
           }
-
           setAccommodations(accommodationsData);
         }
       } catch (error) {
@@ -64,11 +73,43 @@ function Accommodation() {
   };
 
   const handleBookingClick = () => {
+    if (!isLoggedIn) {
+      setBookingError('You must sign in to book an accommodation');
+      return;
+    }
+    setBookingError('');
     setBookingOpen(true);
   };
 
   const handleBookingClose = () => {
     setBookingOpen(false);
+    setBookingError('');
+  };
+
+  const handleBookingSubmit = async () => {
+    if (!selectedAccommodation || !user) return;
+    
+    setBookingLoading(true);
+    try {
+      const bookingData = {
+        userId: user.uid,
+        accommodationId: selectedAccommodation.id, // Assuming accommodation has an ID field
+        accommodationName: selectedAccommodation.name,
+        price: selectedAccommodation.price,
+        checkInDate: new Date(), // Example check-in date, replace with actual data from form
+        checkOutDate: new Date(), // Example check-out date, replace with actual data from form
+        status: 'pending', // Default status of the booking
+      };
+
+      await addDoc(collection(db, 'bookings'), bookingData);
+      alert('Booking submitted successfully!');
+    } catch (error) {
+      console.error('Error booking accommodation:', error);
+      setBookingError('Failed to submit booking');
+    } finally {
+      setBookingLoading(false);
+      setBookingOpen(false);
+    }
   };
 
   const sliderSettings = {
@@ -80,7 +121,7 @@ function Accommodation() {
   };
 
   if (loading) {
-    return <div>Loading accommodations...</div>;
+    return <CircularProgress />;
   }
 
   return (
@@ -126,7 +167,6 @@ function Accommodation() {
             <DialogTitle>{selectedAccommodation.name}</DialogTitle>
             <DialogContent>
               <Grid container spacing={2}>
-                {/* Image Slider */}
                 <Grid item xs={12} md={6}>
                   {selectedAccommodation.images && (
                     <Slider {...sliderSettings}>
@@ -139,7 +179,6 @@ function Accommodation() {
                   )}
                 </Grid>
 
-                {/* Accommodation Details */}
                 <Grid item xs={12} md={6}>
                   <Box>
                     <Typography variant="h6" gutterBottom>
@@ -173,6 +212,7 @@ function Accommodation() {
                 Book Accommodation
               </Button>
             </DialogActions>
+            {bookingError && <Alert severity="error">{bookingError}</Alert>}
           </>
         )}
       </Dialog>
@@ -217,8 +257,8 @@ function Accommodation() {
           <Button onClick={handleBookingClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleBookingClose} color="primary" variant="contained">
-            Submit Booking
+          <Button onClick={handleBookingSubmit} color="primary" variant="contained" disabled={bookingLoading}>
+            {bookingLoading ? <CircularProgress size={24} /> : 'Submit Booking'}
           </Button>
         </DialogActions>
       </Dialog>
