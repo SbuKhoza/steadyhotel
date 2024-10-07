@@ -17,6 +17,7 @@ import {
   Box,
   CircularProgress,
   Alert,
+  Snackbar,
 } from '@mui/material';
 import { useSelector } from 'react-redux'; // Use to get current user info
 import 'slick-carousel/slick/slick.css';
@@ -30,6 +31,8 @@ function Accommodation() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [bookingError, setBookingError] = useState('');
   const [bookingLoading, setBookingLoading] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   // Get current user from Redux store
   const user = useSelector((state) => state.user.userInfo);
@@ -44,10 +47,10 @@ function Accommodation() {
 
         if (!querySnapshot.empty) {
           for (const doc of querySnapshot.docs) {
-            const accommodation = doc.data();
+            const accommodation = { id: doc.id, ...doc.data() };
             const imageUrl = accommodation.frontPicture
               ? await getImageUrl(accommodation.frontPicture)
-              : accommodation.frontPicture;
+              : await getImageUrl(null); // Default image if frontPicture is missing
             accommodationsData.push({ ...accommodation, imageUrl });
           }
           setAccommodations(accommodationsData);
@@ -75,6 +78,8 @@ function Accommodation() {
   const handleBookingClick = () => {
     if (!isLoggedIn) {
       setBookingError('You must sign in to book an accommodation');
+      setSnackbarMessage('You must sign in to book an accommodation');
+      setSnackbarOpen(true);
       return;
     }
     setBookingError('');
@@ -88,7 +93,7 @@ function Accommodation() {
 
   const handleBookingSubmit = async () => {
     if (!selectedAccommodation || !user) return;
-    
+
     setBookingLoading(true);
     try {
       const bookingData = {
@@ -102,13 +107,15 @@ function Accommodation() {
       };
 
       await addDoc(collection(db, 'bookings'), bookingData);
-      alert('Booking submitted successfully!');
+      setSnackbarMessage('Booking submitted successfully!');
     } catch (error) {
       console.error('Error booking accommodation:', error);
       setBookingError('Failed to submit booking');
+      setSnackbarMessage('Failed to submit booking');
     } finally {
       setBookingLoading(false);
       setBookingOpen(false);
+      setSnackbarOpen(true);
     }
   };
 
@@ -121,7 +128,11 @@ function Accommodation() {
   };
 
   if (loading) {
-    return <CircularProgress />;
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    );
   }
 
   return (
@@ -129,11 +140,11 @@ function Accommodation() {
       <Grid container spacing={2}>
         {accommodations.length > 0 ? (
           accommodations.map((acc, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid item xs={12} sm={6} md={4} marginLeft={5} key={index} >
               <Card>
                 <CardMedia
                   component="img"
-                  height="140"
+                  height="300"
                   image={acc.imageUrl}
                   alt={acc.name}
                 />
@@ -262,6 +273,14 @@ function Accommodation() {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Snackbar Notification */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+        message={snackbarMessage}
+      />
     </div>
   );
 }
