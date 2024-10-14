@@ -34,6 +34,8 @@ export const getImageUrl = async (imagePath) => {
   }
 };
 
+
+
 // Function to upload profile picture to Firebase Storage and get the download URL
 export const uploadProfilePicture = async (file, userId) => {
   if (!file) throw new Error("No file provided for upload");
